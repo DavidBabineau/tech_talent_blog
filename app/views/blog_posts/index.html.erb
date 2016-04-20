@@ -1,31 +1,33 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Blog Posts</h1>
+<h1>Blogget About It!</h1>
 
 <div class="row">
   <% @blog_posts.each do |blog_post| %>
     <div class="col-md-6">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <%= link_to blog_post.title, blog_post %>
+      <div class="panel panel-primary">
+        <div class="panel panel-heading">
+          <strong><%= link_to blog_post.title, blog_post %></strong>
+
         </div>
-        <div class="panel-body">
-          by <%= blog_post.author %> <br />
-          <p>
-        <%= truncate(blog_post.blog_entry, length: 250, separator: " ") %> <br /> [<%= link_to 'Read More', blog_post %>]
-</div>
+        <div class="panel panel-body">
+          by <strong><%= link_to blog_post.user.username, user_posts_path(id: blog_post.user.id) %></strong>
+          <p><%= truncate(blog_post.blog_entry, length: 250, separator: " ") %> <br /> [<%= link_to 'Read More', blog_post %>]</p>
+          <p>submitted <%= blog_post.created_at.strftime('%m/%d/%Y at %I:%M%p') %></p>
+        </div>
         <div class="panel-footer">
-          <%= link_to 'Show', blog_post, class: "btn btn-primary" %>
+          <% if current_user.id == blog_post.user.id %>
           <%= link_to 'Edit', edit_blog_post_path(blog_post), class: "btn btn-warning" %>
-          <%= link_to 'Destroy', blog_post, method: :delete,
-          data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+          <%= link_to 'Destroy', blog_post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+          <% end %>
         </div>
       </div>
     </div>
   <% end %>
 </div>
 
+
 <br>
 
-
-<%= link_to 'New Blog post', new_blog_post_path %>
+<%= link_to 'New Blog post', new_blog_post_path, class: "btn btn-info" %>
+<br>

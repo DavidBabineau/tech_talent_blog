@@ -1,3 +1,19 @@
 .cant-see-me{
   display: none;
 }
+
+body {
+  background-color: #b3b6dd;
+}
+
+.container {
+  background-color: rgba(255,255,255,0.8);
+  margin-top: 45px;
+  margin-bottom: 45px;
+  padding-bottom: 10px;
+  border-radius: 10-px;
+}
+
+.panel-heading{
+  color: white;
+}

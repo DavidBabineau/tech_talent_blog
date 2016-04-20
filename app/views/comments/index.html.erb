@@ -12,6 +12,11 @@
   </thead>
 
   <div class"panel-body">
+    by <%= blog_post.author %><br />
+    <p><span class="post-at">posted at: <%= blog_post.
+    created_at.strftime('%m/%d/%Y at %I:%M%p') %></p>
+    <p><%= blog_post.blog_entry[0..250] %>...[<%= link_to "READ MORE", blog_post %>]</p>
+  </div>
 
   <tbody>
     <% @comments.each do |comment| %>
